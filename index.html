@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Invitación VIP - 36 Años de Johnny Medina</title>
+  
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Invitación Exclusiva: 36 Años de Johnny Medina">
+  <meta name="description" content="Acompáñame a celebrar mis 36 años este Jueves 26 de Noviembre. ¡Toca para abrir tu invitación!">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Ambient Sparkles Canvas -->
+  <canvas id="sparkleCanvas" aria-hidden="true"></canvas>
+
+  <!-- Hidden YouTube Player Container -->
+  <div id="youtubePlayer" class="sr-only" aria-hidden="true"></div>
+
+  <!-- PANTALLA DE BIENVENIDA / SOBRE VIP (Garantiza Autoplay de Música y Efecto de Lujo) -->
+  <section id="welcomeScreen" class="welcome-overlay" aria-label="Pantalla de bienvenida e invitación">
+    <div class="envelope-card">
+      <div class="envelope-ribbon" aria-hidden="true"></div>
+      
+      <div class="seal-container">
+        <img src="assets/envelope-seal.svg" alt="Sello oficial de Johnny Medina" class="wax-seal-img" width="120" height="120">
+      </div>
+
+      <span class="welcome-badge">INVITACIÓN EXCLUSIVA</span>
+      
+      <hgroup class="welcome-hgroup">
+        <p class="welcome-subtitle">CELEBRACIÓN ESPECIAL</p>
+        <h1 class="welcome-name">JOHNNY MEDINA</h1>
+        <p class="welcome-age">Mis 36 Años</p>
+      </hgroup>
+
+      <div class="envelope-divider" aria-hidden="true">
+        <span></span>✦<span></span>
+      </div>
+
+      <p class="welcome-note">Toca el botón para abrir tu invitación y activar la experiencia musical.</p>
+
+      <button type="button" id="openInvitationBtn" class="btn-open-envelope" autofocus>
+        <span class="btn-pulse-glow" aria-hidden="true"></span>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        ABRIR INVITACIÓN
+      </button>
+    </div>
+  </section>
+
+  <!-- Barra / Botón Flotante de Audio con Nombre de Canción -->
+  <aside class="audio-floating-pill">
+    <button id="audioBtn" class="audio-toggle-btn" aria-label="Reproducir o pausar música de fondo">
+      <span class="audio-icon-bars" aria-hidden="true">
+        <span class="audio-bar"></span>
+        <span class="audio-bar"></span>
+        <span class="audio-bar"></span>
+      </span>
+      <div class="audio-info">
+        <span class="audio-status">Música</span>
+        <span class="audio-song-title">La Jeepeta (Remix)</span>
+      </div>
+    </button>
+  </aside>
+
+  <!-- CONTENEDOR PRINCIPAL MOBILE-FIRST -->
+  <main class="app-container">
+
+    <!-- 1. HERO / PORTADA VIP -->
+    <article class="card hero-card reveal-on-scroll">
+      <div class="card-corner corner-tl" aria-hidden="true"></div>
+      <div class="card-corner corner-tr" aria-hidden="true"></div>
+      <div class="card-corner corner-bl" aria-hidden="true"></div>
+      <div class="card-corner corner-br" aria-hidden="true"></div>
+
+      <span class="badge-tag">¡ESTÁS CORDIALMENTE INVITADO!</span>
+
+      <hgroup>
+        <h1 class="celebrant-name">JOHNNY MEDINA</h1>
+        <p class="celebration-age">Mis 36 Años</p>
+      </hgroup>
+
+      <!-- Foto de Portada con Marco Dorado -->
+      <figure class="photo-frame-wrapper">
+        <div class="photo-frame-glow" aria-hidden="true"></div>
+        <img 
+          src="assets/foto-johnny.jpg" 
+          alt="Retrato de Johnny Medina" 
+          class="celebrant-photo"
+          width="200" 
+          height="200"
+          loading="eager"
+        >
+      </figure>
+
+      <div class="divider-ornament" aria-hidden="true">
+        <span class="divider-line"></span>
+        <span class="divider-icon">✦</span>
+        <span class="divider-line"></span>
+      </div>
+
+      <p class="hero-quote">
+        "Agradecido con Dios y la vida por un año más lleno de salud, trabajo y bendiciones. Deseo celebrar este día especial rodeado de las personas que más aprecio."
+      </p>
+    </article>
+
+    <!-- 2. CUENTA REGRESIVA DINÁMICA -->
+    <article class="card countdown-card reveal-on-scroll">
+      <div class="card-corner corner-tl" aria-hidden="true"></div>
+      <div class="card-corner corner-br" aria-hidden="true"></div>
+
+      <p class="section-label">
+        <span aria-hidden="true">⏳</span> FALTAN PARA EL GRAN DÍA
+      </p>
+
+      <div class="countdown-grid" role="timer" aria-live="polite">
+        <div class="countdown-box">
+          <span class="countdown-val" id="days">00</span>
+          <span class="countdown-lbl">Días</span>
+        </div>
+        <div class="countdown-box">
+          <span class="countdown-val" id="hours">00</span>
+          <span class="countdown-lbl">Horas</span>
+        </div>
+        <div class="countdown-box">
+          <span class="countdown-val" id="minutes">00</span>
+          <span class="countdown-lbl">Min</span>
+        </div>
+        <div class="countdown-box">
+          <span class="countdown-val" id="seconds">00</span>
+          <span class="countdown-lbl">Seg</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. CUÁNDO Y DÓNDE (ACCIONES RÁPIDAS) -->
+    <article class="card details-card reveal-on-scroll">
+      <div class="card-corner corner-tl" aria-hidden="true"></div>
+      <div class="card-corner corner-br" aria-hidden="true"></div>
+
+      <h2>Cuándo y Dónde</h2>
+
+      <!-- Bloque Fecha -->
+      <div class="detail-block">
+        <div class="detail-icon-box" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
+        </div>
+        <div class="detail-info">
+          <p class="detail-title">FECHA DEL EVENTO</p>
+          <p class="detail-main">Jueves, 26 de Noviembre</p>
+          <p class="detail-sub">Año 2026</p>
+        </div>
+      </div>
+
+      <!-- Bloque Hora -->
+      <div class="detail-block">
+        <div class="detail-icon-box" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+        </div>
+        <div class="detail-info">
+          <p class="detail-title">HORA DE RECEPCIÓN</p>
+          <p class="detail-main">07:00 P.M.</p>
+          <p class="detail-sub">Agradecemos tu puntualidad</p>
+        </div>
+      </div>
+
+      <!-- Bloque Ubicación -->
+      <div class="detail-block">
+        <div class="detail-icon-box" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+        </div>
+        <div class="detail-info">
+          <p class="detail-title">LUGAR DEL EVENTO</p>
+          <p class="detail-main">Mz C Lote 9</p>
+          <p class="detail-sub">Asociación La Victoria</p>
+        </div>
+      </div>
+
+      <!-- Botones de Acción -->
+      <div class="actions-group">
+        <a 
+          href="https://www.google.com/maps/search/?api=1&query=Mz+C+Lote+9+asoc.+La+victoria" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn-action btn-gold"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+          Abrir en Google Maps
+        </a>
+
+        <button type="button" id="copyAddressBtn" class="btn-action btn-outline-gold">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+          Copiar Dirección
+        </button>
+
+        <a 
+          href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cumplea%C3%B1os+36+de+Johnny+Medina&dates=20261126T190000/20261127T020000&details=%C2%A1Acomp%C3%A1%C3%B1ame+a+celebrar+mis+36+a%C3%B1os!&location=Mz+C+Lote+9+asoc.+La+victoria" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn-action btn-outline-gold"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+          Agendar en mi Calendario
+        </a>
+      </div>
+    </article>
+
+    <!-- 4. PROGRAMA DEL DÍA (ITINERARIO) -->
+    <article class="card itinerary-card reveal-on-scroll">
+      <div class="card-corner corner-tl" aria-hidden="true"></div>
+      <div class="card-corner corner-br" aria-hidden="true"></div>
+
+      <h2>Itinerario de la Noche</h2>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <p class="timeline-time">07:00 P.M.</p>
+          <p class="timeline-title">Recepción de Invitados</p>
+          <p class="timeline-desc">Bienvenida, cóctel de entrada y fotos</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <p class="timeline-time">08:30 P.M.</p>
+          <p class="timeline-title">Palabras y Brindis de Honor</p>
+          <p class="timeline-desc">Agradecimiento especial y brindis con todos</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <p class="timeline-time">09:30 P.M.</p>
+          <p class="timeline-title">Cena de Celebración</p>
+          <p class="timeline-desc">Compartir gastronómico entre amigos y familia</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker" aria-hidden="true"></div>
+          <p class="timeline-time">10:30 P.M.</p>
+          <p class="timeline-title">Fiesta, DJ & Buena Música</p>
+          <p class="timeline-desc">¡A bailar y celebrar la vida como se debe!</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- 5. SUGERIR CANCIÓN PARA EL DJ (NUEVA FUNCIÓN COMERCIAL VENDIBLE) -->
+    <article class="card song-request-card reveal-on-scroll">
+      <div class="card-corner corner-tl" aria-hidden="true"></div>
+      <div class="card-corner corner-br" aria-hidden="true"></div>
+
+      <h2>¿Qué canción no puede faltar?</h2>
+      <p class="song-request-desc">¡Ayúdanos a armar la playlist perfecta para la fiesta! Escribe tu canción favorita y envíasela a Johnny:</p>
+
+      <form id="songForm" class="song-form" onsubmit="return false;">
+        <div class="song-input-wrapper">
+          <input 
+            type="text" 
+            id="songNameInput" 
+            placeholder="Ej: La Jeepeta, Vivir Mi Vida, etc." 
+            aria-label="Nombre de la canción o artista"
+            class="song-input"
+            required
+          >
+        </div>
+        <button type="button" id="sendSongBtn" class="btn-action btn-gold">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+          Sugerir Canción por WhatsApp
+        </button>
+      </form>
+    </article>
+
+    <!-- 6. DRESS CODE & REGALOS -->
+    <article class="card dresscode-card reveal-on-scroll">
+      <div class="card-corner corner-tl" aria-hidden="true"></div>
+      <div class="card-corner corner-br" aria-hidden="true"></div>
+
+      <h2>Detalles & Regalos</h2>
+
+      <!-- Dress Code -->
+      <div class="info-highlight-box">
+        <div class="info-icon" aria-hidden="true">👔</div>
+        <h3 class="info-title">Código de Vestimenta</h3>
+        <p class="info-text">
+          <strong>Sport Elegante / Casual Chic</strong><br>
+          Ven listo para disfrutar, bailar y sacarte las mejores fotos.
+        </p>
+      </div>
+
+      <!-- Notita de Regalo -->
+      <div class="info-highlight-box">
+        <div class="info-icon" aria-hidden="true">✉️</div>
+        <h3 class="info-title">Lluvia de Sobres</h3>
+        <p class="info-text">
+          Tu presencia y alegría es mi mayor regalo. Si deseas hacerme un presente, dispondremos de un cofre para sobres o puedes ver las opciones digitales:
+        </p>
+        <button type="button" id="openGiftDialogBtn" class="btn-action btn-outline-gold btn-sm">
+          💳 Ver Opciones de Regalo / Yape
+        </button>
+      </div>
+    </article>
+
+    <!-- 7. CONFIRMACIÓN RSVP INTERACTIVA CON SELECCIÓN DE ASISTENTES -->
+    <article class="card rsvp-card reveal-on-scroll">
+      <div class="card-corner corner-tl" aria-hidden="true"></div>
+      <div class="card-corner corner-br" aria-hidden="true"></div>
+
+      <h2>Confirmación de Asistencia</h2>
+      <p class="rsvp-desc">
+        Por favor confírmanos tu presencia para tener reservado tu lugar especial:
+      </p>
+
+      <!-- Selector de Acompañantes (Choice Cards - Modern Web Guidance) -->
+      <fieldset class="attendance-choice-group">
+        <legend class="attendance-legend">¿Cuántas personas asistirán?</legend>
+        
+        <div class="choice-cards-grid">
+          <label class="choice-card">
+            <input type="radio" name="attendeeCount" value="1 persona" checked class="choice-radio">
+            <span class="choice-title">1 Persona</span>
+            <span class="choice-sub">Iré solo(a)</span>
+          </label>
+
+          <label class="choice-card">
+            <input type="radio" name="attendeeCount" value="2 personas" class="choice-radio">
+            <span class="choice-title">2 Personas</span>
+            <span class="choice-sub">Con acompañante</span>
+          </label>
+
+          <label class="choice-card">
+            <input type="radio" name="attendeeCount" value="Familia" class="choice-radio">
+            <span class="choice-title">Familia</span>
+            <span class="choice-sub">En grupo</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <a 
+        id="whatsappRsvpLink"
+        href="https://wa.me/51955843714?text=%C2%A1Hola%20Johnny!%20Confirmo%20con%20mucha%20alegr%C3%ADa%20mi%20asistencia%20(1%20persona)%20a%20tu%20cumplea%C3%B1os%20de%2036%20a%C3%B1os.%20Mi%20nombre%20es:%20" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="btn-action btn-whatsapp"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.79 14.07c-.24.68-1.39 1.34-1.92 1.43-.5.08-1.12.12-3.25-.76-2.58-1.07-4.22-3.7-4.35-3.87-.13-.18-1.05-1.4-1.05-2.67 0-1.28.67-1.91.91-2.17.24-.26.53-.33.7-.33.18 0 .35 0 .5.01.16.01.38-.06.59.45.22.53.76 1.86.83 2 .07.14.12.31.02.5-.1.19-.15.31-.3.48-.15.17-.32.39-.46.52-.15.15-.31.31-.13.62.18.31.8 1.32 1.72 2.14 1.18 1.05 2.17 1.38 2.48 1.53.31.15.49.13.67-.08.18-.21.78-.91.99-1.22.21-.31.42-.26.7-.15.28.11 1.78.84 2.09.99.31.15.52.22.6.35.07.13.07.76-.17 1.44z"/></svg>
+        Confirmar Asistencia por WhatsApp
+      </a>
+
+      <!-- Botón de Brindis con Confeti -->
+      <button type="button" id="toastCheersBtn" class="btn-action btn-toast">
+        🥂 ¡Toca aquí para brindar con Johnny!
+      </button>
+    </article>
+
+    <!-- FOOTER ELEGANTE -->
+    <footer class="site-footer">
+      <div class="divider-ornament" aria-hidden="true">
+        <span class="divider-line"></span>
+        <span class="divider-icon">✦</span>
+        <span class="divider-line"></span>
+      </div>
+      <p class="footer-name">Johnny Medina</p>
+      <p class="footer-note">¡Será un honor compartir esta gran noche contigo!</p>
+    </footer>
+
+  </main>
+
+  <!-- MODAL NATIVO: OPCIONES DE REGALO / YAPE (Modern Web Guidance - Native Dialog) -->
+  <dialog id="giftDialog" class="gift-dialog" aria-labelledby="giftDialogTitle" closedby="any">
+    <div class="dialog-content">
+      <button type="button" id="closeGiftDialogBtn" class="btn-close-dialog" aria-label="Cerrar ventana">✕</button>
+
+      <div class="dialog-header">
+        <span class="dialog-badge">DETALLE DE REGALO</span>
+        <h2 id="giftDialogTitle" class="dialog-title">Mesa de Regalos</h2>
+        <p class="dialog-desc">Tu cariño es lo primordial. Si deseas hacerme un presente digital, aquí tienes los datos:</p>
+      </div>
+
+      <div class="gift-option-card">
+        <div class="gift-brand">
+          <span class="gift-badge-brand">YAPE / PLIN</span>
+          <span class="gift-owner">Johnny Medina</span>
+        </div>
+        <p class="gift-number">+51 955 843 714</p>
+        <button type="button" id="copyYapeBtn" class="btn-action btn-gold btn-xs">
+          Copiar Número
+        </button>
+      </div>
+
+      <div class="gift-option-card">
+        <div class="gift-brand">
+          <span class="gift-badge-brand">PRESENCIAL</span>
+        </div>
+        <p class="gift-desc-text">Habrá un cofre especial para sobres en la recepción del local.</p>
+      </div>
+
+      <button type="button" id="closeGiftDialogBottomBtn" class="btn-action btn-outline-gold" style="width: 100%; margin-top: 1rem;">
+        Cerrar
+      </button>
+    </div>
+  </dialog>
+
+  <!-- TOAST NOTIFICACIÓN -->
+  <div id="toastMsg" class="toast-msg" role="status" aria-live="polite">
+    <span class="toast-icon">✨</span>
+    <span class="toast-text">Notificación</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/script.js"></script>
+</body>
+</html>
