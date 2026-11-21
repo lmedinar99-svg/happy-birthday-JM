@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <radialGradient id="waxGrad" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#fbe285"/>
+      <stop offset="35%" stop-color="#d4af37"/>
+      <stop offset="70%" stop-color="#aa771c"/>
+      <stop offset="100%" stop-color="#5a3d07"/>
+    </radialGradient>
+    <filter id="waxShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+  <!-- Irregular Wax Seal Outline -->
+  <path d="M100,10 C125,12 145,20 165,38 C185,58 192,80 190,105 C188,135 178,158 155,175 C132,192 108,190 85,190 C58,190 35,175 20,152 C5,128 8,102 12,80 C18,52 35,28 60,18 C75,12 88,9 100,10 Z" 
+        fill="url(#waxGrad)" filter="url(#waxShadow)"/>
+  <!-- Inner Ring -->
+  <circle cx="100" cy="100" r="68" fill="none" stroke="#fbe285" stroke-width="2.5" opacity="0.65" stroke-dasharray="6 4"/>
+  <circle cx="100" cy="100" r="62" fill="none" stroke="#5a3d07" stroke-width="1.5" opacity="0.8"/>
+  <!-- Monogram J -->
+  <text x="102" y="125" font-family="'Cinzel', Georgia, serif" font-size="70" font-weight="bold" fill="#3a2503" text-anchor="middle" opacity="0.85">J</text>
+  <text x="100" y="123" font-family="'Cinzel', Georgia, serif" font-size="70" font-weight="bold" fill="#fbe285" text-anchor="middle">J</text>
+  <!-- Stars -->
+  <path d="M100,42 L103,49 L110,50 L105,55 L106,62 L100,58 L94,62 L95,55 L90,50 L97,49 Z" fill="#fbe285" opacity="0.9"/>
+  <path d="M100,140 L102,145 L107,146 L103,150 L104,155 L100,152 L96,155 L97,150 L93,146 L98,145 Z" fill="#fbe285" opacity="0.9"/>
+</svg>
